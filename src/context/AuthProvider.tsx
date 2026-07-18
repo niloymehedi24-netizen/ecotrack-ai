@@ -15,10 +15,16 @@ export type UserRole = "USER" | "ADMIN";
 
 
 export interface AuthUser {
+
     _id: string;
     name: string;
     email: string;
     role: UserRole;
+    // Dashboard data
+    ecoScore?: number;
+    carbonSaved?: number;
+    createdAt?: string;
+
 }
 
 
@@ -26,18 +32,13 @@ interface AuthContextType {
     user: AuthUser | null;
     loading: boolean;
     logout: () => void;
-    refreshUser: () => void;
+    refreshUser: () => Promise<void>;
 }
-
-
 
 const AuthContext =
     createContext<AuthContextType | undefined>(
         undefined
     );
-
-
-
 
 const getCurrentUser = async () => {
 
@@ -50,122 +51,73 @@ const getCurrentUser = async () => {
 
 };
 
-
-
-
 export default function AuthProvider({
     children,
 }: {
     children: React.ReactNode;
 }) {
-
-
     const queryClient =
         useQueryClient();
 
-
-
-
     const {
-        data: user,
-        isLoading,
-    } = useQuery({
-
-        queryKey: ["current-user"],
-
-        queryFn: getCurrentUser,
-
-        retry: false,
-
-    });
-
-
-
-
+        data: user, isLoading } = useQuery({
+            queryKey: ["current-user"],
+            queryFn: getCurrentUser,
+            retry: false,
+        });
 
     const logoutMutation =
         useMutation({
-
             mutationFn: async () => {
-
                 await axiosInstance.post(
                     "/auth/logout"
                 );
-
             },
 
-
             onSuccess: () => {
-
                 queryClient.removeQueries({
                     queryKey: ["current-user"],
                 });
-
             },
 
         });
 
+    const refreshUser = async () => {
 
-
-
-
-    const refreshUser = () => {
-
-        queryClient.invalidateQueries({
+        await queryClient.invalidateQueries({
             queryKey: ["current-user"],
         });
 
     };
 
-
-
-
-
     return (
 
         <AuthContext.Provider
-
             value={{
-
                 user: user ?? null,
-
                 loading: isLoading,
-
                 logout: logoutMutation.mutate,
-
                 refreshUser,
-
-            }}
-
-        >
+            }}>
 
             {children}
-
         </AuthContext.Provider>
 
     );
 
 }
 
-
-
-
-
-
 export const useAuthContext = () => {
 
     const context =
         useContext(AuthContext);
-
 
     if (!context) {
 
         throw new Error(
             "useAuthContext must be used inside AuthProvider"
         );
-
     }
-
 
     return context;
 

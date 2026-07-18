@@ -26,7 +26,7 @@ const navLinks = [
 
 export default function Navbar() {
     return (
-        <header className="fixed top-0 z-50 w-full">
+        <header className="sticky top-0 z-50 w-full">
 
             <Container>
                 <nav className="mt-4 flex h-16 items-center justify-between rounded-2xl border border-white/20 bg-white/80 px-6 shadow-lg backdrop-blur-xl" >

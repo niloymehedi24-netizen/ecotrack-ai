@@ -47,7 +47,7 @@ export default function RegisterPage() {
     };
 
     return (
-        <main className="min-h-screen flex items-center justify-center bg-linear-to-br from-emerald-50 via-white to-cyan-50 px-5 mt-25 mb-20">
+        <main className="min-h-screen flex items-center justify-center bg-linear-to-br from-emerald-50 via-white to-cyan-50 px-5 py-5">
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
