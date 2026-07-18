@@ -12,6 +12,8 @@ export interface RegisterPayload {
   email: string;
 
   password: string;
+
+  role: "USER" | "ADMIN";
 }
 
 export interface AuthResponse {
