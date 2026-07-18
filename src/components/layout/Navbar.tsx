@@ -1,7 +1,8 @@
 
 import Link from "next/link";
-import { Leaf, Menu } from "lucide-react";
+import { Leaf } from "lucide-react";
 import Container from "../common/Container";
+import MobileMenu from "./MobileMenu";
 
 const navLinks = [
     {
@@ -98,13 +99,10 @@ export default function Navbar() {
 
                     {/* Mobile Button */}
 
-                    <button
-                        className="rounded-xl p-2 md:hidden hover:bg-slate-100">
 
-                        <Menu />
-
-                    </button>
-
+                    <div className="md:hidden">
+                        <MobileMenu></MobileMenu>
+                    </div>
 
                 </nav>
 
