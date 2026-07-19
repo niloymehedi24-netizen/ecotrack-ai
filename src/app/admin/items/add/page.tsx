@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createItem } from "@/services/item.service";
 import type { ItemCategory } from "@/types/item";
+import toast from "react-hot-toast";
 
 export default function AddItemPage() {
     const router = useRouter();
@@ -31,6 +32,7 @@ export default function AddItemPage() {
             image: form.image,
             price: Number(form.price),
         });
+        toast.success("Item added successfully");
         router.push("/admin/items");
     };
 
@@ -48,7 +50,7 @@ export default function AddItemPage() {
                 </select>
                 <input placeholder="Image URL" value={form.image} onChange={(e) => setForm({ ...form, image: e.target.value })} className="w-full rounded-xl border p-3" required />
                 <input placeholder="Price" type="number" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} className="w-full rounded-xl border p-3" required />
-                <button type="submit" className="w-full rounded-xl bg-emerald-500 py-3 font-semibold text-white transition hover:bg-emerald-600">
+                <button type="submit" className="w-full rounded-xl bg-emerald-500 py-3 font-semibold text-white transition hover:bg-emerald-400 cursor-pointer">
                     Add Item
                 </button>
             </form>

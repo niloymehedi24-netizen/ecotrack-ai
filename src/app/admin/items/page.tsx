@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getItems, deleteItem } from "@/services/item.service";
 import type { Item } from "@/types/item";
+import toast from "react-hot-toast";
 
 export default function AdminItemsPage() {
     const { data, refetch, isLoading } = useQuery({
@@ -15,10 +16,27 @@ export default function AdminItemsPage() {
     const items: Item[] = data?.items ?? [];
 
     const handleDelete = async (id: string) => {
-        const confirmDelete = confirm("Delete this item?");
-        if (!confirmDelete) return;
-        await deleteItem(id);
-        refetch();
+
+        const confirmDelete =
+            window.confirm("Are you sure you want to delete this item?");
+
+        if (!confirmDelete)
+            return;
+        try {
+            await deleteItem(id);
+            toast.success(
+                "Item deleted successfully"
+            );
+
+            refetch();
+
+        } catch (error) {
+            toast.error(
+                "Failed to delete item"
+            );
+
+        }
+
     };
 
     if (isLoading) {
@@ -29,7 +47,7 @@ export default function AdminItemsPage() {
         <div className="p-6">
             <div className="mb-8 flex items-center justify-between">
                 <h1 className="text-3xl font-bold">Manage Eco Items</h1>
-                <Link href="/admin/items/add" className="rounded-xl bg-emerald-500 px-6 py-3 text-white transition hover:bg-emerald-600">
+                <Link href="/admin/items/add" className="cursor-pointer rounded-xl bg-emerald-500 px-6 py-3 text-white transition hover:bg-emerald-400">
                     Add Item
                 </Link>
             </div>
@@ -44,9 +62,24 @@ export default function AdminItemsPage() {
                             <h2 className="text-xl font-bold">{item.title}</h2>
                             <p className="mt-1 text-slate-600">{item.category}</p>
                             <p className="mt-2 font-semibold text-emerald-600">${item.price}</p>
-                            <button onClick={() => handleDelete(item._id)} className="mt-5 w-full rounded-xl bg-red-500 py-3 text-white transition hover:bg-red-600">
-                                Delete
-                            </button>
+
+                            {/* Action Buttons */}
+                            <div className="mt-6 grid grid-cols-2 gap-3">
+
+                                <Link
+                                    href={`/admin/items/edit/${item._id}`}
+                                    className="flex items-center justify-center rounded-xl bg-linear-to-r from-blue-500 to-indigo-500 px-4 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                                    Edit
+                                </Link>
+
+
+                                <button
+                                    onClick={() => handleDelete(item._id)}
+                                    className=" flex items-center justify-center rounded-xl bg-linear-to-r from-red-500 to-rose-500 px-4 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer">
+                                    Delete
+                                </button>
+
+                            </div>
                         </div>
                     </div>
                 ))}

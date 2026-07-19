@@ -12,6 +12,8 @@ import {
     FaCog,
     FaSignOutAlt,
     FaTimes,
+    FaBox,
+    FaPlusCircle,
 } from "react-icons/fa";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -61,6 +63,16 @@ export default function DashboardSidebar({
             name: "Manage Users",
             href: "/admin/users",
             icon: FaUsers,
+        },
+        {
+            name: "Manage Items",
+            href: "/admin/items",
+            icon: FaBox,
+        },
+        {
+            name: "Add Item",
+            href: "/admin/items/add",
+            icon: FaPlusCircle,
         },
         {
             name: "Analytics",
@@ -170,7 +182,7 @@ export default function DashboardSidebar({
                     <div className="p-4 border-t border-slate-200">
                         <button
                             onClick={handleLogout}
-                            className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-red-600 transition-all duration-200 hover:bg-red-50"
+                            className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-red-600 transition-all duration-200 hover:bg-red-50 cursor-pointer"
                         >
                             <FaSignOutAlt className="text-lg" />
                             Logout

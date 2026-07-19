@@ -8,7 +8,6 @@ export default function UsersPage() {
     if (isLoading) {
         return <div className="p-10">Loading users...</div>;
     }
-
     return (
         <div className="p-6 md:p-10">
             <h1 className="text-3xl font-bold">Users</h1>
