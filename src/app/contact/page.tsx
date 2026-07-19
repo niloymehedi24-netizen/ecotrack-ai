@@ -101,7 +101,7 @@ export default function ContactPage() {
                                 title: "Location",
                                 info: "Dhaka, Bangladesh",
                             },
-                        ].map((item, index) => {
+                        ].map((item) => {
                             const Icon = item.icon;
                             return (
                                 <div

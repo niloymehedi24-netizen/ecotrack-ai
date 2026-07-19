@@ -23,7 +23,7 @@ export default function AdminPage() {
             <h1 className="text-4xl font-bold">Admin Control Center</h1>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mt-10">
-                {stats.map((item, index) => (
+                {stats.map((item) => (
                     <motion.div
                         key={item.title}
                         whileHover={{ y: -8 }}
