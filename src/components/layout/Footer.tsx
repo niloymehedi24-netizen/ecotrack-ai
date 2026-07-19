@@ -90,6 +90,9 @@ export default function Footer() {
                             <li>
                                 <Link href="/terms" className="hover:text-emerald-400 transition">Terms & Conditions</Link>
                             </li>
+                            <li>
+                                <Link href="/help" className="hover:text-emerald-400 transition">Help & Support</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
