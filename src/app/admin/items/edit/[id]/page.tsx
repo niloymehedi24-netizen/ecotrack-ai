@@ -76,10 +76,10 @@ export default function EditItemPage() {
                 <input value={form.image} onChange={(e) => setForm({ ...form, image: e.target.value })} placeholder="Image URL" className="w-full rounded-xl border p-3" required />
                 <input value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} placeholder="Price" type="number" className="w-full rounded-xl border p-3" required />
                 <div className="flex gap-4">
-                    <button type="submit" className="flex-1 rounded-xl bg-emerald-500 py-3 font-semibold text-white transition hover:bg-emerald-600">
+                    <button type="submit" className="flex-1 rounded-xl bg-emerald-500 py-3 font-semibold text-white transition hover:bg-emerald-600 cursor-pointer">
                         Update Item
                     </button>
-                    <button type="button" onClick={() => router.push("/admin/items")} className="flex-1 rounded-xl border border-slate-300 py-3 font-semibold text-slate-700 transition hover:bg-slate-100">
+                    <button type="button" onClick={() => router.push("/admin/items")} className="flex-1 rounded-xl border border-slate-300 py-3 font-semibold text-slate-700 transition hover:bg-slate-100 cursor-pointer">
                         Cancel
                     </button>
                 </div>

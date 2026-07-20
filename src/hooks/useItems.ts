@@ -9,6 +9,7 @@ export const useItems = (params: {
   maxPrice?: number;
   sort?: string;
   page?: number;
+  limit?: number;
 }) => {
   return useQuery({
     queryKey: ["items", params],

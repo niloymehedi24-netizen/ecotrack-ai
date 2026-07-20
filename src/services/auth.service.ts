@@ -50,6 +50,14 @@ export const registerUser = async (payload: RegisterPayload) => {
   return response.data;
 };
 
+export const googleLogin = async (credential: string) => {
+  const response = await axiosInstance.post("/auth/google", {
+    credential,
+  });
+
+  return response.data;
+};
+
 export const logoutUser = async () => {
   const response = await axiosInstance.post("/auth/logout");
 

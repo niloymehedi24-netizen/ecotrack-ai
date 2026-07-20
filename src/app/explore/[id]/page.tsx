@@ -58,7 +58,7 @@ export default function ItemDetailsPage() {
 
                         {/* Action Buttons */}
                         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                            <button className="flex-1 rounded-2xl bg-linear-to-r from-emerald-500 to-cyan-500 px-8 py-4 font-semibold text-white transition hover:shadow-xl">
+                            <button className="flex-1 rounded-2xl bg-linear-to-r from-emerald-500 to-cyan-500 px-8 py-4 font-semibold text-white transition hover:shadow-xl cursor-pointer">
                                 Save Solution
                             </button>
                             <Link href="/explore" className="flex-1 rounded-2xl border border-slate-300 px-8 py-4 text-center font-semibold text-slate-700 transition hover:bg-slate-100">

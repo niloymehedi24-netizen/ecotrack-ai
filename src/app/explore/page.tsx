@@ -33,6 +33,7 @@ export default function ExplorePage() {
         maxPrice: maxPrice ? Number(maxPrice) : undefined,
         sort,
         page,
+        limit: 8,
     });
 
     const items: Item[] = Array.isArray(data?.items) ? data.items : [];
@@ -120,7 +121,7 @@ export default function ExplorePage() {
                                     <h3 className="mt-4 text-2xl font-bold">{item.title}</h3>
                                     <p className="mt-3 line-clamp-2 text-slate-600">{item.description}</p>
                                     <p className="mt-3 font-semibold text-emerald-600">${item.price}</p>
-                                    <button onClick={() => router.push(`/explore/${item._id}`)} className="mt-6 w-full rounded-xl bg-linear-to-r from-emerald-500 to-cyan-500 py-3 font-semibold text-white transition hover:shadow-lg">
+                                    <button onClick={() => router.push(`/explore/${item._id}`)} className="mt-6 w-full rounded-xl bg-linear-to-r from-emerald-500 to-cyan-500 py-3 font-semibold text-white transition hover:shadow-lg cursor-pointer">
                                         View Details
                                     </button>
                                 </div>
@@ -130,10 +131,42 @@ export default function ExplorePage() {
                 </div>
                 {/* Pagination */}
                 {data?.totalPages && data.totalPages > 1 && (
-                    <div className="mt-12 flex justify-center gap-4">
-                        <button disabled={page === 1} onClick={() => setPage(page - 1)} className="rounded-xl bg-white px-5 py-3 shadow disabled:opacity-50">Previous</button>
-                        <div className="rounded-xl bg-emerald-500 px-5 py-3 text-white">{page}</div>
-                        <button disabled={page === data.totalPages} onClick={() => setPage(page + 1)} className="rounded-xl bg-white px-5 py-3 shadow disabled:opacity-50">Next</button>
+                    <div className="mt-16 flex flex-col items-center gap-4">
+                        <p className="text-sm text-slate-500">
+                            Showing page <span className="font-semibold text-slate-700">{page}</span> of
+                            <span className="font-semibold text-slate-700"> {data.totalPages}</span>
+                        </p>
+
+                        <div className="flex items-center gap-2 rounded-2xl bg-white p-2 shadow-lg border border-slate-100">
+                            <button
+                                disabled={page === 1}
+                                onClick={() => setPage(page - 1)}
+                                className="rounded-xl px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-emerald-50 hover:text-emerald-600 disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
+                            >
+                                Previous
+                            </button>
+
+                            {Array.from({ length: data.totalPages }, (_, i) => i + 1).map((pageNumber) => (
+                                <button
+                                    key={pageNumber}
+                                    onClick={() => setPage(pageNumber)}
+                                    className={`h-10 w-10 rounded-xl text-sm font-semibold transition-all duration-200 ${page === pageNumber
+                                        ? "bg-linear-to-r from-emerald-500 to-cyan-500 text-white shadow-md scale-105"
+                                        : "text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 cursor-pointer"
+                                        }`}
+                                >
+                                    {pageNumber}
+                                </button>
+                            ))}
+
+                            <button
+                                disabled={page === data.totalPages}
+                                onClick={() => setPage(page + 1)}
+                                className="rounded-xl px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-emerald-50 hover:text-emerald-600 disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
+                            >
+                                Next
+                            </button>
+                        </div>
                     </div>
                 )}
             </section>

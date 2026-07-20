@@ -19,6 +19,7 @@ export const getItems = async (params?: {
   maxPrice?: number;
   sort?: string;
   page?: number;
+  limit?: number;
 }): Promise<ItemsResponse> => {
   const response = await axiosInstance.get("/items", {
     params,
