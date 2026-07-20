@@ -10,11 +10,11 @@ Built with **Next.js, TypeScript, Node.js, Express.js, MongoDB, JWT Authenticati
 
 ### Frontend
 
-[https://your-frontend-url.vercel.app](https://ecotrack-ai-kappa.vercel.app/)
+https://ecotrack-ai-kappa.vercel.app/
 
 ### Backend API
 
-[https://your-backend-url.onrender.com](https://ecotrack-ai-server.onrender.com/)
+https://ecotrack-ai-server.onrender.com/
 
 
 ---
