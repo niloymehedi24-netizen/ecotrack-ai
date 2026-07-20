@@ -29,7 +29,7 @@ export default function AnalyticsPage() {
                         <Line
                             type="monotone"
                             dataKey="users"
-                            stroke="#10b981"
+                            stroke="#10b982"
                             strokeWidth={2}
                         />
                     </LineChart>
