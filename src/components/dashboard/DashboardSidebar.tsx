@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
-    FaLeaf,
     FaHome,
     FaUser,
     FaRobot,
@@ -11,9 +10,9 @@ import {
     FaUsers,
     FaCog,
     FaSignOutAlt,
-    FaTimes,
     FaBox,
     FaPlusCircle,
+    FaMagic,
 } from "react-icons/fa";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -51,6 +50,11 @@ export default function DashboardSidebar({
             href: "/dashboard/reports",
             icon: FaChartLine,
         },
+        {
+            name: "Recommendations",
+            href: "/dashboard/recommendations",
+            icon: FaMagic,
+        }
     ];
 
     const adminLinks = [
@@ -109,29 +113,6 @@ export default function DashboardSidebar({
                     }`}
             >
                 <div className="flex h-full flex-col">
-                    {/* Logo */}
-                    <div className="flex items-center justify-between p-6 border-b border-slate-200">
-                        <Link href="/" className="flex items-center gap-3">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-linear-to-br from-emerald-500 to-cyan-500 text-white">
-                                <FaLeaf className="text-xl" />
-                            </div>
-                            <div>
-                                <h1 className="text-xl font-bold text-slate-900">
-                                    EcoTrack AI
-                                </h1>
-                                <p className="text-xs text-slate-500">
-                                    Sustainability Platform
-                                </p>
-                            </div>
-                        </Link>
-
-                        <button
-                            onClick={onClose}
-                            className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 lg:hidden"
-                        >
-                            <FaTimes />
-                        </button>
-                    </div>
 
                     {/* User Info */}
                     <div className="p-6 border-b border-slate-200">
